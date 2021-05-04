@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="jp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitHub Pagesについて</title>
+    
+    <link rel="stylesheet" href="main.css">
+</head>
+
+
+<body>
+    <!--ホームに帰るためのボタン-->
+    <logotohome>
+    <a href="index.html"><img src="images/logo.png" alt=""></a>
+    </logotohome>
+
+   <h1>3/22<br>ゼミ合宿１日目 -GitHubについて-<h1>
+
+    <h2>●GitHubの運用方法<h2>
+         <p>①ターミナルに　mkdir mygit　と打つ<br>
+        →この操作でホームディレクトリにmygitのフォルダを作る。<br>
+        ②ターミナルに　cd mygit　と打つ<br>
+        矢印この操作でmygitのファイルに移動できる<br>
+        ③ターミナルに cd doyolab と打ち git status　と打つ<br>
+        →この操作でmygit内にあるdoyolabのファイルに移動し、statusの確認ができる。<br><br>
+        <img src="images/step1.png"><br><br>
+        ④statusを確認するとdoyolabの中に入っているファイルが赤文字で表示される。<br>
+        ⑤git add . と打つ。<br>
+        →これで上で出てきた赤文字のファイルたちをパソコンのdoyolabに送られる。<br>
+        ⑥git status と打ちもう1度ステータスを確認すると、緑文字が出てくる。<br><br>
+        <img src="images/step2.png"><br><br>
+        ⑦git commit -m"20210322" と打つ。<br>
+        →この操作でgit上にあるdoyolabのファイルに20210322という名前のファイルできる。<br>
+        ⑧git push と打つ。<br>
+        →ターミナルで変更した部分がHPに反映される。<br>
+        ⑨GitHubで設定したユーザネームを入力してエンターを押す。<br>
+        ⑩GitHubのアクセストークンをコピーして貼り付ける。<br>
+
+       <br> <img src="images/step3.png"><br><br>
+
+        </p>
+    <h3>●自分のHPに追加する方法<h3>
+        <p>
+        もう一度doyolabのステータスを確認して、赤文字で 「modified:   index.html」と表示されていることを確認する。<br>
+        <br>
+        VScodeで自分のパソコンのmygit doyolab　のファイルから index.html ファイルを開く。<br>
+        <br>
+        <a href="https://onomiyu.github.io/doyolab/htmlmemo.html">HTMLについて</a> ここを参考にHPを書く。<br>
+        <br>もしくは…<br>
+        git.htmlをファイル内でコピーして、それをVScodeで開く。そのコードのbody内を少しずつ自分で変えて作る。<br>
+        <br><br>
+       </p>
+    <h4>○入力の手順</h4>
+        <p>
+        ➀コードを書いたらアップルマークのバーにあるファイルから保存する<br>
+        ②ターミナルで<br>
+        git add .  <br>
+        git commit -m"(適当なファイル名)<br>
+        git push <br>
+        <br>
+        ①~②の工程をコードを書いてHPに反映させて見たい時に行う。<br>
+        ※適当なファイル名は同じものを入れないようにする。ナンバリングした方がわかりやすい。<br>
+        ex) "20210322-1" "20210322-2" など
+
+        
+        
+
+
+
+
+
+           
+        
+
+    
+
+                
+
+</body>
