@@ -49,3 +49,11 @@ span.blackback{
     color: #efefef;
 }
 
+img {
+    display: block;
+    width: 200px;
+    height: 250px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
