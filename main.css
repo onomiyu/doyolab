@@ -36,11 +36,12 @@ h1{
 h2{
     margin-left: 0.5em;
     margin-top: 2em;
+    font-size: 30px;
 }
 h3{
     margin-left: 3em;
 }
-p,div{
+div{
     margin-left: 1em;
 }
 span.blackback{
@@ -55,5 +56,13 @@ img {
     height: 250px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+/* May css */
+
+p.style1 {
+    margin: 0 0;
+    color:black;
+    font-size: 20px;
 }
 
