@@ -1,0 +1,87 @@
+miyuonヘッダー{
+    width: 30px;
+    height: 960px;
+
+}
+logo img{
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* 画像のトリミング */
+}
+logotohome img{
+    display: block;
+    width: 50px;
+    height: 50px;
+    object-fit: cover; /* 画像のトリミング */
+}
+
+/* トップページの一覧に関するスタイル----------------------------------------------*/
+
+/* ---------------------------------------------------------------------------*/
+
+
+/* ========== common ========== */
+html, body {
+	font-size: 16px;
+	font-family: sans-serif;
+	color: #393939;
+    margin-left: 15px;
+    margin-bottom: 40px;
+	background: #efefef;
+}
+h1{
+    text-indent: 0em;
+}
+h2{
+    margin-left: 0.5em;
+    margin-top: 2em;
+    font-size: 30px;
+}
+h3{
+    margin-left: 3em;
+}
+div{
+    margin-left: 1em;
+}
+span.blackback{
+    text-indent: 4em;
+    background: white;
+    color: #efefef;
+}
+
+img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+figcaption {
+    width: 200px;
+    height: 200px;
+    font-size: 1.2em;        
+    text-align: center;      
+    word-wrap: break-word;
+}
+
+
+/* May css */
+
+p.style1 {
+    margin: 0 0;
+    color:black;
+    font-size: 20px;
+}
+
+/* June css */
+
+.横長 {
+    display: block;
+    width: 720px;
+    height: 500px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+

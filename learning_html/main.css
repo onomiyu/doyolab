@@ -53,10 +53,19 @@ span.blackback{
 img {
     display: block;
     width: 200px;
-    height: 250px;
+    height: 200px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+figcaption {
+    width: 200px;
+    height: 200px;
+    font-size: 1.2em;        
+    text-align: center;      
+    word-wrap: break-word;
+}
+
 
 /* May css */
 
