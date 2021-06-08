@@ -9,10 +9,64 @@
 </head>
 <body>
     <h1>Flaskのインストール方法</h1>
-    <h2>2021/06/07</h2>
+    <h2>2021/06/09</h2>
     <section>
         ここではWebアプリケーション作成に必要なFlaskのインストール方法についてまとめる。<br>
-        
+        ＊Macの場合
+
+        <img src="images/flask01.png" alt="Flaskのインストール方法①" class="横長"><br>
+        ①pythonのバージョンが3系であることを確認する。<br>
+        　→3系でない場合は<a href="https://qiita.com/Daara_y/items/d7cf7c859342984b6e1c">こちら</a>を参照。<br>
+        <span class="blackback">
+            python --version
+        </span><br><br>
+        ②virtualenvをインストールする。<br>
+         virtualenvとはshell上でプロジェクトごとに個別の仮想環境を構築できるツールのこと。<br>
+         <span class="blackback">
+             pip install virtualenv
+         </span><br><br>
+        ③finder内にFlaskのプロジェクトのフォルダを作る<br>
+        <span class="blackback">
+             mkdir ”ファイル名”
+        </span><br>
+        ※""は書き込まない<br>
+        私の場合、learningというフォルダの中にflask_appというフォルダを作った。<br>
+        cdはフォルダを移動するときに使うコマンド<br>
+    </section>
+    <section>
+        <img src="images/flask02.png" alt="flaskのインストール2" class="横長"><br>
+        ④フラスクのプロジェクトを保存するフォルダにいることを確認する。<br>
+        <span class="blackback">
+            cd "ファイル名"
+        </span><br><br>
+        ⑤flaskアプリケーションを作成する<br>
+        <span class="blackback">
+            virtualenv "ディレクトリ名"
+        </span><br>
+        ここではtestappにした。<br><br>
+        ⑥ディレクトリの中身を確認する。<br>
+          ※llのコマンドで動かなかったため、lsでtestappのディレクトリができているか確認して、Finderで開いて見た。<br>
+    </section>
+    <section>
+        <img src="images/flask03.png" alt="flaskのインストール3" class="横長"><br>
+        ⑦5番で作ったディレクトリ（testapp）に移動する。<br>
+        <span class="blackback">
+            cd testapp
+        </span><br><br>
+        ⑧この環境を使用するためにアクティブ化する。<br>
+        <span class="blackback">
+            . bin/activate
+        </span><br>
+        →上記で動かない場合は<span class="blackback">source bin/activate</span>と入力する。<br>
+        ※うまくアクティブ化することができたら⑩の行のように表示される。<br><br>
+        ⑨flaskをインストールする。<br>
+        <span class="blackback">
+            pip install Flask
+        </span><br><br>
+        ⑩無事に完了したか確認する。<br>
+        <span class="blackback">
+            Flask --version
+        </span><br>
     </section>
     
 
