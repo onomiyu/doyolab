@@ -17,6 +17,11 @@ logotohome img{
 }
 
 /* トップページの一覧に関するスタイル----------------------------------------------*/
+figure {
+    display: inline-block;   /* インラインブロック化 */
+    margin: 0px 3px 7px 0px; /* 外側に余白を追加(※右に3px・下に7px) */
+    background-color: #efefef; 
+}
 
 /* ---------------------------------------------------------------------------*/
 
@@ -39,7 +44,8 @@ h2{
     font-size: 30px;
 }
 h3{
-    margin-left: 3em;
+    line-height: 10px;
+    font-size: 20px;
 }
 div{
     margin-left: 1em;
@@ -48,6 +54,12 @@ span.blackback{
     text-indent: 4em;
     background: white;
     color: #efefef;
+}
+
+figure {
+    display: inline-block;   /* インラインブロック化 */
+    margin: 0px 3px 7px 0px; /* 外側に余白を追加(※右に3px・下に7px) */
+    background-color: #efefef; 
 }
 
 img {
@@ -77,12 +89,13 @@ p.style1 {
 
 /* June css */
 
-.横長 {
+.img2 {
     display: block;
     width: 720px;
     height: 500px;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 20px;
 }
 
 /* learning html */
@@ -91,5 +104,15 @@ span.blackback{
     background:#393939;
     color: #efefef;
     margin-left: 2em;
+}
+
+li{
+    list-style: none;
+    line-height: 10px;
+}
+
+ul{
+    list-style: none;
+    padding-left: 20px;
 }
 
