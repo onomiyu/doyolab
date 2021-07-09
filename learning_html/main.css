@@ -95,10 +95,12 @@ p.style1 {
 
 /* learning html */
 span.blackback{
+    display: block;
     text-indent: 4em;
     background:#393939;
     color: #efefef;
-    margin-left: 2em;
+    margin: 1em 1em 1em 1em;
+    padding-left: 2em;
 }
 
 li{
@@ -110,4 +112,5 @@ ul{
     list-style: none;
     padding-left: 20px;
 }
+
 

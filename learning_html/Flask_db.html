@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flaskを動かしてみる</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1>Flaskでデータベースを構築する</h1>
+    <h2>2021/07/08</h2>
+    <section>
+        ここでは、Flaskでデータを取得して表示する方法を記述する。<br>
+        なお、この段階ではまだ仮想空間のローカル環境でのデータベースの取得とする。<br>
+        <br>
+        参照したページはこちら<br>
+        <a href="https://qiita.com/yuucu/items/dea6e7a0a655af8fdb91">①Flaskチュートリアル＋herokuにデプロイ</a><br>
+        <a href="https://note.com/kazuyamano/n/n26d959063d11#gDQRN">②[前編]文系初学者がPython×Flask×データベースを使って検温記録WEBアプリを作ってっみたメモ</a><br>
+    </section>
+    <br>
+
+    <section>
+        
+        <h1>①プロジェクトの作成</h1>
+        <span class="blackback">
+            <br>
+            mkdir flask_app <br>
+            cd flask_appgit init <br>
+            git init <br>
+            <br>
+        </span>
+        <h1>②python仮想環境　構築</h1>
+        <span class="blackback">
+            <br>
+            python3 -m venv venv <br>
+            source venv/bin/activate <br>
+            <br>
+        </span>
+        activateすると (venv)$ の様な仮想空間が現れる。<br>
+        venvのファイルと同じ階層に　.gitignore　を作り、それに venv　と書き込む。<br>
+        venvはgitで管理する必要はないためと書かれているが正直なぜなのかはよくわからない。<br>
+        しかし、あとからエラーが出るのが怖いので一応やっておく。
+        <h1>③flaskのインストール</h1>
+        <span class="blackback">
+            <br>
+            pip install --upgrade pip <br>
+            pip install flask <br>
+            <br>
+        </span>
+        <h1>④フォルダの作成</h1>
+        これにflaskの主要ファイルを置く。
+        <span class="blackback">
+            <br>
+            mkdir main <br>
+            <br>
+        </span>
+    </section>
+    <br>
+    <h2>ここからはいよいよ書き込み！</h2>
+    <br>
+    <section>
+        <h1>①run.py</h1>
+        Hello,World!と表示する。<br>
+        venvのファイルと同じ階層に run.py を作る。
+        <span class="blackback">
+            <br>
+            from main import app <br>
+            <br>
+            if__name__ = '__main__': <br>
+            &emsp;app.run(debug=True) <br>
+            <br>
+        </span>
+        <h1>②main/__init.py__</h1>
+        mainのフォルダの中に __init.py__ を作る　<br>
+        <span class="blackback">
+            <br>
+            from flask import Flask <br>
+            app = Flask(__name__) <br>
+            import main.views <br>
+            <br>
+        </span>
+        この時、エラーで文字の下に波線が出てしまうが、<br>
+        あとから mian package　がimportされた時になくなるので<br>
+        気にせず進む。
+        <h1>③mian/views.py</h1>
+        mainのフォルダの中にviews.pyを作る
+        <span class="blackback">
+            <br>
+            import flask <br>
+            from main import app <br>
+            <br>
+            @app.route('/') <br>
+            def show_entries(): <br>
+            &emsp;return 'Hello, World' <br>
+            <br> 
+        </span>
+        <h1>④実行</h1>
+        ターミナルで実行する 
+        <span class="blackback">
+            <br>
+            python run.py <br>
+            <br>
+        </span>
+        ターミナル上にブラウザのpassが表示されるのでそこにいくと、<br>
+        Hello, World!と表示されている。<br>
+        ここまでの画面がこちら↓<br>
+        ディレクトリの構成も確認してください！<br>
+        <img src="images/flask_images/flask_app01.png" alt="flask_app hello world!" class="img2">
+    </section>
+    <br>
+    <h2>データベースを使用するので</h2>
+    <br>
+    <section>
+        <h1>①flask_aqlalchemyのインストール</h1>
+        SQLAlchemy という ORM　を使用する。<br>
+        flask用のものをインストール。
+        <span class="blackback">
+            <br>
+            pip install flask_sqlalchemy <br>
+            <br>
+        </span>
+        <h1>②main/__init__.py を編集</h1>
+        <span class="blackback">
+            <br>
+            from flask import Flask <br>
+            from flask_sqlalchemy import SQLAlchemy <br>
+            <br>
+            app = Flask(__name__) <br>
+            app.config.from_object('main.config') <br>
+            <br>
+            db = SQLAlchemy(app) <br>
+            <br>
+            import main.views <br>
+            <br>
+        </span>
+        <h1>③main/config.py　を編集</h1>
+        <span class="blackback">
+            <br>
+            import os <br>
+            <br>
+            SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or "sqlite:///test.db" <br>
+            SQLALCHEMY_TRACK_MODIFICATIONS = True <br>
+            SECRET_KEY="secret key" <br>
+            <br>
+        </span>
+        <h1>④main/models/py を編集</h1>
+        私が作るWebアプリは人が欲しいもの記入するものが必要なので、<br>
+        name:名前を入力する<br>
+        want:欲しいものを入力する <br>
+        を入れられるようにする。 <br>
+        <span class="blackback">
+            <br>
+            from main import db <br>
+            from flask_sqlalchemy import SQLAlchemy <br>
+            <br>
+            class Entry(db.Model): <br>
+            &emsp;id = db.Colum(db.Integer, primary) <br>
+            &emsp;name = db.Colum(db.Text) <br>
+            &emsp;want = db.Colum(db.Text) <br>
+            <br>
+            &emsp;def __repr__(self): <br>
+            &emsp;&emsp;return "<Entry id={} name={!r}>" .format(self.id, self.name) <br>
+            <br>
+            def init(): <br>
+            &emsp;db.create_all() <br>
+            <br>
+        </span>
+        <h1>⑤データベース作成</h1>
+        <span class="blackback">
+            <br>
+            python -c "import main.models; main.models.init()" <br>
+            <br>
+        </span>
+        <h1>⑥データ挿入</h1>
+        データ挿入 <br>
+        2人分のデータを入れる。<br>
+        name:Siri &emsp; want:vacation <br>
+        name:Alexa &emsp; want:dayoff <br>
+        <span class="blackback">
+            <br>
+            (venv)$ python <br>
+            >>> from main.models import Entry <br>
+            >>> from main import db <br>
+            <br>
+            >>> entry1 = Entry(name='Siri', want='vacation') <br>
+            >>> db.session.add(entry1) <br>
+            >>> db.session.commit() <br>
+            <br>
+            >>> entry2 = Entry(name='Alexa', want='dayoff') <br>
+            >>>db.session.add(entry2) <br>
+            >>>db.session.commit() <br>
+            <br>
+            >>> entries = Entry.query.all() <br>
+            >>> entries <br>
+            <br>
+        </span>
+        python コマンドでターミナルを「インタラクティブシェル」モードにする。<br>
+        データ挿入のターミナル結果↓<br>
+        ディレクトリ構成も確認してください! <br>
+        <img src="images/flask_images/flask_app02.png" alt="flaskデータベース" class="img2"><br>
+        最後の exit()　はインタラクティブシェルモードを終了する。control+D　でもできる。<br>
+        <br>
+        <h1>⑦main/views.pyを編集</h1><br>
+        <span class="blackback">
+            <br>
+            import flask <br>
+            from main import app <br>
+            from main.models import Entry <br>
+            <br>
+            @app.route('/') <br>
+            def show_entries(): <br>
+            &emsp;entries = Entry.query.all() <br>
+            &emsp;return flask.render.render_template('entries.html', entries = entries) <br>
+            <br>
+        </span>
+        <h1>⑧htmlテンプレートの準備</h1>
+        <span class="blackback">
+            <br>
+            mkdir main/templates <br>
+            <br>
+        </span>
+        tempaltesに entries.html ファイルを作成し、以下のように書き込む。 <br>
+        <img src="images/flask_images/flask_app03.png" alt="htmlのテキスト" class="img2"><br>
+        <h1>⑨実行</h1>
+        ターミナルで実行する。
+        <span class="blackback">
+            <br>
+            python run.py <br>
+            <br>
+        </span>
+        ローカルで実行して、ブラウザで確認するとこの様になる↓
+        <img src="images/flask_images/flask_app04.png" alt="ローカル環境で実行、ブラウザで確認" class="img2"><br>
+        <h1>⑩main/views.py　を編集</h1>
+        ブラウザからデータベースに書き込む仕掛けを作る
+        <span class="blackback">
+            <br>
+            from flask <br>
+            from main import app, db <br>
+            from main.models import Entry <br>
+            <br>
+            @app.route('/') <br>
+            def show_entries(): <br>
+            &emsp;entries = Entry.query.all() <br>
+            &emsp;return flask.render_template('entries.html',entries=entries) <br>
+            <br>
+            @app.route('/add', methods=['POST']) <br>
+            def add_entry(): <br>
+            &emsp;entry = Entry(name = flask.request.form['name'], want = flask.request.form['want']) <br>
+            &emsp;db.session.add(entry) <br>
+            &emsp;db.session.commit() <br>
+            &emsp;return flask.redirect(flask.url_for('show_entries')) <br>
+            <br>
+        </span>
+        python run.pyで実行  <br>
+        ブラウザをチェックする！　<br>
+        <br>
+        実際に入力フォームからデータを送信する。 <br>
+        <img src="images/flask_images/flask_app05.png" alt="フォームから入力" class="img2"> <br>
+        <br>
+        次は、このローカル環境をネットとつなげる！
+
+    </section>
+
+
+     
+  
+
+
+    
+    
+</body>
+</html>
