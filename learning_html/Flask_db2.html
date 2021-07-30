@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1>データベースをインターネット公開する</h1>
+    <h2>2021/07/31</h2>
+    <section>
+        ここではローカルで作ったデータベースをネット上にあげる<br>
+        <br>
+        参照にしたページはこちら<br>
+        <a href="https://note.com/kazuyamano/n/na9cc1cd4f490">[後編]文系初学者がPython×Flask×データベースを使って検温記録WEBアプリを作ってっみたメモ</a>
+    </section>
+    <br>
+    <section>
+        <h1>①GitHubにローカルリポジトリを作る。</h1>
+        作り方は<a href="https://doyodoyo.github.io/doyolab/01githubmemo.html">こちら</a>を参照してください。道用先生のGitHubについてのサイトです。<br>
+        <img src="images/flask_images/flask_app06.png" class="img2" alt="リポジトリ">
+        <h1>②ローカルとリモートリポジトリをつなぐ。</h1>
+        リポジトリのcodeというところにあるURLをコピーする。<br>
+        ターミナルで下記を書く。<br>
+        <span class="blackback">
+            git remote add origin GitHubのリモートリポジトリURL　<br>
+            git config --global user.name "GitHubに登録しているユーザネーム"<br>
+            git config --global user.email GitHubに登録しているメールアドレス <br>
+        </span><br>
+        ちゃんと入ったかどうかは、下記で確認<br>
+        これを入れると、GitHubに登録している内容が返ってくる
+        <span class="blackback">
+        git remote -v <br>
+        git config user.name <br>
+        git config user.email <br>
+        </span>
+        <h1>③リモート先からローカル先にフェッチする（同期設定）</h1>
+        <span class="blackback">
+            git fetch
+        </span>
+    </section>
+    
+</body>
+</html>
