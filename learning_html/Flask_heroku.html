@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>herokuとの連携</title>
+</head>
+<body>
+    <h1></h1>
+    <h2>2021/08/16</h2>
+    <section>
+        ここでは作ったアプリケーションをherokuにつなげる作業を行う。<br>
+        ＊Macの場合<br>
+        何度やってもエラーばかりでGitに繋げられなかったので後で繋げることにします。<br>
+        もう一度最初から構築したpythonファイルをやり直したがうまくいかなかったので保留。<br>
+
+        <br>
+        herokuとは、アプリケーション開発に必要なものが1つにまとまっている環境のことです。<br>
+        これにつなげるとぜんぶうまくいく！ <br>
+        <h1>①heroku連携前の下準備</h1>
+        <span class="blackback">
+            pip install gunicorn
+            pip install psycopg2-binary
+        </span>
+        <h1>②Profileの準備</h1>
+        <span class="blackback">
+            vim Profile
+        </span>
+        <img src="images/flask_images/flask_app09.png" alt="" class="img2">
+        <br>
+        そうするとprofileのファイルが作られるので、これをrenameで拡張子なしのProfileにする。
+        <h1>③Profileに書き込む</h1>
+        <span class="blackback">
+            web: gunicorn run:app --log-file -
+        </span>
+         <br>
+        <h1>④requirements.txtというファイルを作る</h1>
+        ターミナルで操作<br>
+        <span class="blackback">
+            pip freeze > requirements.txt
+        </span><br>
+        これを頼りにherokuが必要なライブラリをインストールする。<br>
+        <img src="images/flask_images/flask_app10.png" alt="" class="img2">
+        <h1>⑤herokuでアカウント登録をする</h1>
+        <a href="https://jp.heroku.com/">こちら</a>から各種設定を行ってください。　<br>
+        <img src="images/flask_images/flask_app11.png" alt="" class="img2">
+        今回はapp名は　donation to a person　の略でdtpappとしました。<br>
+        <h1>⑥Heroku Postgres アドオンを追加</h1>
+        インターネット側でのデータベース管理に、Herokuのアドオン機能であるHeroku Postgresを使う。<br>
+        <a href="https://elements.heroku.com/addons">こちら</a>から設定を行ってください。。<br>
+        <img src="images/flask_images/flask_app12.png" alt="" class="img2"><br>
+        できるとこの画面になる<br>
+        <img src="images/flask_images/flask_app13.png" alt="" class="img2"> <br>
+        <br>
+        いい加減gitのエラーが出るのやめて欲しいです。<br>
+        早急にgitに繋げられます様に。。。
+        
+
+    </section>
+    
+</body>
+</html>
