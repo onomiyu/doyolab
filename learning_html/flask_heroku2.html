@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>heroku設定</title>
+</head>
+<body>
+    <h1>herokuの初期設定とgithubに繋げる作業</h1>
+    <h2>2021/09/01</h2>
+    <section>
+        今までエラーが出てできなかったGitHubに連携する作業と、<br>
+        herokuの初期設定もろもろを進める。
+    </section>
+    <section>
+        <h1>①仮想空間のアクティベート</h1>
+        <span class="blackback">
+            <br>
+            source venv/bin/activate <br>
+            <br>
+        </span>
+        <h1>②githubと連携する。</h1>
+        いままで出ていたエラー内容↓<br>
+        <img src="images/flask_images/flask_app08.png" alt="" class="img2">
+        gitのリポジトリにコミットしてもファイルが追加されない。<br>
+        最初からステータスを見てリポジトリも作りなおして始める。<br>
+        今回参考にしたページは<a href="https://techacademy.jp/magazine/6235#sec3_1">こちら</a>です。<br>
+        1、今あるリポジトリを初期化してステータス確認。<br>
+        <span class="blackback">
+            <br>
+            git init <br>
+            git status <br>
+            <br>
+        </span>
+        <img src="images/flask_images/flask_app15.png" alt="" class="img2">
+        2、ファイルをgitのインデックスに追加してローカルリポジトリにコミットする。<br>
+        <span class="blackback">
+            <br>
+            git add . <br>
+            git commit -m "add new file"<br>
+            <br>
+        </span>
+        <img src="images/flask_images/flask_app16.png" alt="" class="img2"> <br>
+        そしてまた git status　で確認して黄色の部分のメッセージができれば連携成功。 <br>
+        自分のGitのページで確認しても、ファイルがしっかり更新されていたので、やっと連携成功。。。<br>
+        <h1>③Heroku CLI　をインストールする</h1>
+        ターミナルでherokuを操作するために必要になる。<br>
+        <span class="blackback">
+            <br>
+            brew tap heroku/brew && brew install heroku <br>
+            <br>
+        </span>
+        <h1>④herokuとGithubを連携させる。</h1>
+        参考にしたサイトは<a href="https://qiita.com/sho7650/items/ebd87c5dc2c4c7abb8f0">こちら</a>です。<br>
+        以下のボタンを順番通りに進む↓<br>
+        <img src="images/flask_images/flask_app17.png" alt="" class="img2">
+        <img src="images/flask_images/flask_app18.png" alt="" class="img2">
+
+    </section>
+
+    
+</body>
+</html>
