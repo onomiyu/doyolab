@@ -55,10 +55,39 @@
         <h1>④herokuとGithubを連携させる。</h1>
         参考にしたサイトは<a href="https://qiita.com/sho7650/items/ebd87c5dc2c4c7abb8f0">こちら</a>です。<br>
         以下のボタンを順番通りに進む↓<br>
-        <img src="images/flask_images/flask_app17.png" alt="" class="img2">
-        <img src="images/flask_images/flask_app18.png" alt="" class="img2">
-
+        <img src="images/flask_images/flask_app17.png" alt="" class="img2"><br>
+        <img src="images/flask_images/flask_app18.png" alt="" class="img2"><br>
+        <img src="images/flask_images/flask_app19.png" alt="" class="img2"><br>
+        Authorize herokuを押して進む。<br>
+        正しく認可されると検索画面が出てくるので、リポジトリ名を入力し検索してConnectする。<br>
+        <img src="images/flask_images/flask_app20.png" alt="" class="img3">
+        Automatic deploy と Manual deploy が出てくればOK <br>
+        <img src="images/flask_images/flask_app21.png" alt="" class="img2"><br>
+        Manual deploy　の　deploy Branch　を押して Viewボタンを押す。<br>
+        <h1>⑤herokuのサーバにgitのリポジトリを紐づける。</h1>
+        <span class="blackback">
+            <br>
+            git remote -v <br>
+            heroku git:remote -a アプリ名 <br>
+            <br>
+        </span>
+        <img src="images/flask_images/flask_app22.png" alt="" class="img2">
+        こうするとherokuのログが見られる様になる。<br>
+        <span class="blackback">
+            <br>
+            heroku logs <br>
+            <br>
+        </span>
+        <h1>⑥heroku上にデータベースを作る。</h1>
+        <span class="blackback">
+            heroku run python -c "import main.models; main.models.init()"
+        </span>
+        <h1><span class="fontcolorRed">問題発生</span></h1>
+        ここのデータベースを追加しても、herokuのデータベース管理のPostgresにテーブルがなかった。<br>
+        ここのデータベースに一つ作られていないといけないので、次回からまた試して進める。
+        <img src="images/flask_images/flask_app23.png" alt="" class="img2">
     </section>
+    
 
     
 </body>
