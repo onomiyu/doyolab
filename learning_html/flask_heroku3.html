@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データベース最終</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1>前回のエラーから解決する</h1>
+    <h2>2021/09/19</h2>（9月15日分）
+    <br>
+    <h1><span class="fontcolorRed">前回のエラー</span></h1>
+        ここのデータベースを追加しても、herokuのデータベース管理のPostgresにテーブルがなかった。<br>
+        ここのデータベースに一つ作られていないといけないので、今回からまた試して進める。
+        <img src="images/flask_images/flask_app23.png" alt="" class="img2">
+        <br>
+        <br>
+    <h3>ファイルから作り直してみた</h3>
+        どれを試しても、テーブルが出来上がらないので、1からやり直してみることにした。<br>
+        最初のFlaskのファイルを作るところから始める。<br>
+        次に詰まったところは、HerokuにGitHubを繋げてデプロイするところである。<br>
+        pythonのpsycopg2のインストールで問題が発生していることがbuild logでわかる。<br>
+        このエラーの直し方を示す。参考にしたページ<br>
+        <a href="https://qiita.com/horahora0828/items/e03703b1b3aded966c68">こちら</a><br>
+        <a href="https://teratail.com/questions/119394">こちら</a>←このアンサーに本当に助けられました。何度やってもデプロイできなかったので😭 <br>
+    <h1>①今インストールしているpsycopg2をアンインストールする。</h1>
+    <span class="blackback">
+        <br> 
+        pip uninstall psycopg2 <br>
+        <br>
+    </span>
+    <br>
+    pip list でインストールしているものがわかる。psycopg2がアンインストールされているか確認。<br>
+    <h1>②新しいものをインストールする。</h1>
+    <span class="blackback">
+        <br>
+        pip install psycopg2-binary <br>
+        <br>
+    </span>
+    そうしたらpip list で psycopg2-binary　がはいっていることを確認する。<br>
+    <h1>③requirements.txt　の中の psycopg2-binary　のバージョンが違うので、pip listで確認したバージョンを入力する。</h1>
+    私の場合は、psycopg2-binary==2.9.1　に直しました。<br>
+    <img src="images/flask_images/flask_app25.png" alt="" class="img2">
+    <br>
+    これでherokuのデプロイのエラーはでなくなったが、やはりテーブルにデータベースが追加されない。<br>
+    <br>
+    <h3>エラー原因として考えられるもの</h3>
+    ①herokuの時間設定が東京にあっていない。以下のコードで変更可能。<br>
+    <span class="blackback"> 
+        <br>
+        heroku config:add TZ=Asia/Tokyo
+        <br><br>
+    </span>
+    こちらは確認済み<br>
+    <img src="images/flask_images/flask_app24.png" alt="" class="img3">
+    ②psqlがうまくインストールされていない。<br>
+    実際確認したら、こちらに問題ありそう。下記がエラーメッセージ<br>
+    <img src="images/flask_images/flask_app26.png" alt="" class="img3">
+    ここをもう一度インストールするところから始める。<br>
+</body>
+</html>
