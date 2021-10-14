@@ -125,7 +125,7 @@
         viを上書き保存して終了する。<br>
         <h3>⑪.htaccesファイルの作成</h3>
         自分のサーバーのファイルにpublic_htmlフォルダを作成して、appliというフォルダをさらに作る。<br>
-        そのフォルダ下に.htaccesファイルを作成。下記を記入。
+        そのフォルダ下に.htaccesファイルを作成。下記を記入。<br>
         <span>
             <br>
             RewriteEngine On <br>
@@ -136,10 +136,11 @@
         <h3>⑫index.cgiのファイルを作成する</h3>
         <span>
             <br>
-            #!/home/サーバーID/anaconda3/bin/python
-            from wsgiref.handlers import CGIHandler
-            from app import app
-            CGIHandler().run(app)
+            #!/home/サーバーID/anaconda3/bin/python <br>
+            from wsgiref.handlers import CGIHandler <br>
+            from app import app <br>
+            CGIHandler().run(app) <br>
+            <br>
         </span>
 
 
