@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>xserver導入</title>
+</head>
+<body>
+    <h1>herokuからxserverにチェンジ！</h1>
+    <h2>2021/10/7</h2>
+    <section>
+        前回からherokuのデータベースにデータを追加するところでエラーが出ている。<br>
+        そこで、herokuのサービスを諦めて新しくレンタルサーバを利用することにする。<br>
+        使うレンタルサーバは <font color="blue">Xserver</font>です。<br>
+        今回は、xserverの環境構築とデータベース管理のやり方をまとめる。
+    </section>
+    <section>
+        <h3>①xserverでアカウント作成</h3>
+        <a href="https://www.xserver.ne.jp/">こちら</a>からアカウント登録を始める。
+        サーバIDは自分で決めてください。今回はプランはスタンダードで進みました。WordPressは使わない。<br>
+        <img src="images/xserver_images/xserver_1.png" alt="" class="img2">
+        そのあとは、アカウント登録。そのまま進んで！<br>
+        <h3>②ssh設定</h3>
+        サーバーパネルに移動。アカウントの中にあるSSH設定を開きonにする。　<br>
+        公開認証用鍵ペアの生成をする。パスフレーズは自分できめる。<br>
+        秘密鍵を生成して自分のパソコンにダウンロードする。<br>
+        <h3>③ドメイン設定</h3>
+        サーバパネルに移動。ドメインの中のドメイン設定を選択。ドメイン設定追加で、任意のドメイン名を選択して進む。<br>
+        <h3>④FE File explorer　を　App Storeから　インストール </h3>
+        <img src="images/xserver_images/xserver_2.png" alt="" class="img2">
+        有料版と無料版がある。有料版は複数のサーバにアクセスできる。今回は無料版で進める。<br>
+        FEを開いて右上の設定→serverを選択。usernameにサーバーID、passwordを入力。ロケーションは任意の場所に選択。<br>
+        <h3>⑤ターミナルでのssh接続を行う。</h3>
+        参考にしたページは　<a href="https://qiita.com/ryo2132/items/38b5a93b3df476dd2b44">こちら</a>
+        先ほどダウンロードしたssh接続のkeyを新しいディレクトリを作成し移動する。<br>
+        <span class="blackback">
+            <br>
+            mkdir ~/.ssh <br>
+            mv ~/Downloads/sample.key ~/.ssh/ <br>
+            <br>
+        </span>
+        秘密鍵の名前を変更する。任意の名前で大丈夫。今回は、id_rsa<br>
+        <span class="blackback">
+            <br>
+            cd ~/.ssh <br>
+            mv sample.key id_rsa<br>
+            <br>
+        </span>
+        .sshディレクトリと秘密鍵のパーミッションを変更する。<br>
+        <span class="blackback">
+            <br>
+            chmod 700 ~/.ssh <br>
+            chmod 600 ~/.ssh/id_rsa <br>
+            <br>
+        </span>
+        ログインする<br>
+        <span class="blackback">
+            <br>
+            ssh -l サーバーID -i 秘密鍵ファイル名(id_rsa) サーバーID.xsrv.jp -p 10022 <br>
+            #パスフレーズを求められるので入力しEnter。<br>
+            Enter passphrase for key 'id_rsa':🔑 <br>
+            <br>
+        </span>
+        <h3>⑥ssh接続の簡略化</h3>
+        いちいち上記の長いコマンドを使用して接続するのは面倒なので、これを簡略化する <br>
+        ターミナルでviコマンドを使う。
+        viとはLinuxのテキストを編集するときに使うソフトウェアである。
+        viの基本的な使い方は下記の通りである。<br>
+        <span class="blackback">
+            <br>
+            #viを開くとき <br>
+            vi ~/.zshrc <br>
+            <br>
+            #viに書き込見たいとき(インサートモード) <br>
+            i <br>
+            <br>
+            #viを保存して終わるとき <br>
+            escキー→Wキー(上書きする場合)→Qキー(quitのQ終わるとき)→Enter <br>
+            <br>
+        </span>
+        viでonfigファイルを編集する。<br>
+        <span class="blackback">
+            <br>
+            vi ~/.ssh/config <br>
+            <br>
+        </span>
+        viを開いてインサートモードにする。(開いた画面でiを押す。) <br>
+        下記の写真の通り記入する。白い部分は、自分のサーバーIDを入れる。
+        <img src="images/xserver_images/xserver_3.png" alt="" class="img2">
+        記入し終えたら、viを保存して終わる。やり方は上に記載してあるので参考に。<br>
+        これで、ssh接続したい時は、ターミナルを開いてxserverと打ち、パスフレーズを入れるだけで接続できる。<br>
+        <h3>⑦Linux版のAnacondaをダウンロードし、xserverにアップロード</h3>
+        参考にしたページは　<a href="https://yaba-blog.com/xserver-pip/">こちら</a>
+        pyenvでインストールすることができなかった。Linuxbrewもうまくインストールできなかったので、 <br>
+        Anaconda公式サイトからLinux用のPythonをダウンロードして、xserverにアップロードしインストールする方法で行う。<br>
+        ダウンロードは<a href="https://www.anaconda.com/products/individual">こちら</a>から
+        <img src="images/xserver_images/xserver_4.png" alt="" class="img2">
+        xserverにログインして、トップページに「ファイル管理」があるので開く。<br>
+        アップロードボタンを押して、先ほどダウンロードしたAnacondaを追加。<br>
+        <h3>⑧ssh接続でanacondaをインストールする。</h3>
+        ターミナルでssh接続する。<br>
+        下記のコマンドでインストールする。<br>
+        *自分のダウンロードしたAnacondaのバージョンによって適宜変える。今回はこれ。
+        <span class="blackback">
+            <br>
+            sh Anaconda3-2021.05-Linux-x86_64.sh <br>
+            <br>
+        </span>
+        ライセンスレビュー、ライセンスの承認、インストールディレクトリを聞かれるのでその都度承認する。<br>
+        ターミナルの自分のxserverの名前の前に(base)となっていればanacondaが機能しているということです！　<br>
+        <h3>⑨pipをインストールする</h3>
+        <span class="blackback">
+            <br>
+            conda install pip <br>
+            <br>
+        </span>
+        <h3>⑩PATHを通す</h3>
+        viをインサートモードにして、~/.bash_profileの一番下に下記を記入。　<br>
+        <span class="blackback">
+            <br>
+            export PATH=/home/サーバ名/anaconda3/bin:$PATH <br>
+            <br>
+        </span>
+        viを上書き保存して終了する。<br>
+        <h3>⑪.htaccesファイルの作成</h3>
+        自分のサーバーのファイルにpublic_htmlフォルダを作成して、appliというフォルダをさらに作る。<br>
+        そのフォルダ下に.htaccesファイルを作成。下記を記入。
+        <span>
+            <br>
+            RewriteEngine On <br>
+            RewriteCond %{REQUEST_FILENAME} !-f <br>
+            RewriteRule ^(.*)$ /サブフォルダ/index.cgi/$1 [QSA,L] <br>
+            <br>
+        </span>
+        <h3>⑫index.cgiのファイルを作成する</h3>
+        <span>
+            <br>
+            #!/home/サーバーID/anaconda3/bin/python
+            from wsgiref.handlers import CGIHandler
+            from app import app
+            CGIHandler().run(app)
+        </span>
+
+
+
+
+
+
+    </section>
+    
+</body>
+</html>
